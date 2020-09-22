@@ -57,12 +57,12 @@ public class CameraController : MonoBehaviour
      */
     void LateUpdate()
     {
-        // If Control and Alt and Middle button? ZOOM!
-        if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.LeftControl))
+        // If Control and Alt and Right Click button? ZOOM!
+        if (Input.GetMouseButton(1) && Input.GetKey(KeyCode.LeftAlt) )
         {
-            desiredDistance -= Input.GetAxis("Mouse Y") * Time.deltaTime * zoomRate*0.125f * Mathf.Abs(desiredDistance);
+            desiredDistance -= Input.GetAxis("Mouse X") * Time.deltaTime * zoomRate*0.125f * Mathf.Abs(desiredDistance);
         }
-        // If middle mouse and left alt are selected? ORBIT
+        // If Left Click and left alt are selected? ORBIT
         else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftAlt))
         {
             xDeg += Input.GetAxis("Mouse X") * xSpeed * 0.02f;
@@ -79,8 +79,8 @@ public class CameraController : MonoBehaviour
             rotation = Quaternion.Lerp(currentRotation, desiredRotation, Time.deltaTime * zoomDampening);
             transform.rotation = rotation;
         }
-        // left mouse button and Q key, we pan by way of transforming the target in screenspace
-        else if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.Q))
+        // Middle Mouse and Alt, we pan by way of transforming the target in screenspace
+        else if (Input.GetMouseButton(2) && Input.GetKey(KeyCode.LeftAlt))
         {
             //grab the rotation of the camera so we can move in a psuedo local XY space
             target.rotation = transform.rotation;
