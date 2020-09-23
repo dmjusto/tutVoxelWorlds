@@ -35,7 +35,8 @@ public class CameraController : MonoBehaviour
     public void Init()
     {
         GameObject go = new GameObject("Fake Cam Target");
-        go.transform.position = transform.position + (transform.forward * distance);
+        //go.transform.position = transform.position + (transform.forward * distance);
+        go.transform.position = Vector3.zero;
         target = go.transform;
  
         distance = Vector3.Distance(transform.position, target.position);
@@ -91,7 +92,7 @@ public class CameraController : MonoBehaviour
         ////////Orbit Position
  
         // affect the desired Zoom distance if we roll the scrollwheel
-        desiredDistance -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * zoomRate * Mathf.Abs(desiredDistance);
+        //desiredDistance -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * zoomRate * Mathf.Abs(desiredDistance);
         //clamp the zoom min/max
         desiredDistance = Mathf.Clamp(desiredDistance, minDistance, maxDistance);
         // For smoothing of the zoom, lerp distance
